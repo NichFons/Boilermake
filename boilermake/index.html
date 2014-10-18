@@ -85,6 +85,12 @@
                     <li class="nav-item">
                       <a class="pure-button trans" href="http://cgt.johnsylva.in">Recent</a>
                     </li>
+                    <li class="nav-item">
+                      <div id='osx-modal'>
+
+                       <a href='#' class='osx pure-button trans'>Add New Question</a>
+                      </div>
+                    </li>
 
                   </ul>
                 </nav>
@@ -135,6 +141,23 @@
         </div>
         </div>
       </div>
+      <div id="osx-modal-content">
+      <div id="osx-modal-title">Create New Question</div>
+      <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+      <div id="osx-modal-data">
+        <form action="">
+          <h2>What's your question?</h2>
+          <input type="text" placeholder="Enter your question here">
+          
+          <h2>What do you want people to vote on?</h2>
+          <div class="enterchoice">
+          <input type="text" placeholder="Enter one of the choices">
+          <input type="text" placeholder="Enter another choice">
+          </div>
+        </form>
+        <button id="addnew">Add more choices</button>
+      </div>
+    </div>
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script>
             $(function(){
@@ -152,7 +175,16 @@
                 $('.choices .result').on('click').removeClass('.hide');
             });
         </script>
+        <script>
+        $(document).ready(function(){
 
+          $("#addnew").click(function(){
+            $(".enterchoice").append("<input type='text' placeholder='Enter another choice'>");
+          });
+        });
+        </script>
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/osx.js'></script>
         <script src="js/modernizr.not.js"></script>
       </body>
       </html>
