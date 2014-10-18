@@ -17,19 +17,7 @@ session_start();
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <link rel="stylesheet" href="css/component.css">
 <script src="js/geoPosition.js"></script>
-<script>
-geoPosition.init()
-function lookup_location() {
-  geoPosition.getCurrentPosition(show_map, show_map_error);
-}
-function show_map(loc) {
-    alert('show data');
-}
-function show_map_error() {
-  alert('show error');
-}
-lookup_location();
-</script>
+
 <!--[if lte IE 8]>
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
@@ -74,10 +62,10 @@ lookup_location();
                 <nav class="nav">
                   <ul class="nav-list">
                     <li class="nav-item">
-                      <a class="pure-button trans" href="http://blog.johnsylva.in">Popular</a>
+                      <a class="pure-button trans" href="?type=popular">Popular</a>
                     </li>
                     <li class="nav-item">
-                      <a class="pure-button trans" href="http://cgt.johnsylva.in">Recent</a>
+                      <a class="pure-button trans" href="?type=recent">Recent</a>
                     </li>
                     <li class="nav-item">
                       <div id='osx-modal'>
@@ -182,6 +170,19 @@ lookup_location();
             $(".enterchoice").append("<input type='text' placeholder='Enter another choice'>");
           });
         });
+        </script>
+        <script>
+            geoPosition.init()
+            function lookup_location() {
+              geoPosition.getCurrentPosition(show_map, show_map_error);
+            }
+            function show_map(loc) {
+                $.get( "location.php", { user_long: loc.coords.longitude, user_lat: loc.coords.latitude } );
+            }
+            function show_map_error() {
+              alert('Geolocation Services is not working at the moment. Refresh the page to retry.');
+            }
+            lookup_location();
         </script>
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/osx.js'></script>
