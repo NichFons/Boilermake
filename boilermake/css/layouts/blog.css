@@ -299,9 +299,7 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 .active {
     border: 1px solid #555;
 }
-.hide {
-    display: none;
-}
+
 
 h2.question {
     font-size: 36pt
@@ -391,4 +389,13 @@ input {
 .load {
     text-align: center;
     margin-top: 40px
+}
+
+
+.result {
+    font-size: 20pt;
+    color:#58D999;
+}
+.hide {
+    display: none;
 }

@@ -194,46 +194,26 @@
                   <div class="container">
                     <form id = "1" class="qchoices" name="myform" action="">
                      
-                      <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" />
+                      <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
                       <label for="radio1" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
+                      <div class="result hide">30 votes</div>
 
-                      <input type="radio" name="foo" onclick="disable()" id="radio2" class="css-checkbox"/>
+                      <input type="radio" name="foo" onclick="disable()" id="radio2" class="css-checkbox" data-id="show"/>
                       <label for="radio2" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
+                      <div class="result hide">40 votes</div>
 
-                      <input type="radio" name="foo" onclick="disable()" id="radio3" class="css-checkbox" />
+                      <input type="radio" name="foo" onclick="disable()" id="radio3" class="css-checkbox" data-id="show"/>
                       <label for="radio3" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
-
-
-                    </form>
-                  
-                    </div>
-              </section>
-             
-              <hr class="half-rule">
-              <!-- A wrapper for all the blog posts -->
-
-              <section id="a">
-                  <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
-                  <div class="container">
-                    <form id = "2" class="qchoices" name="myform" action="">
-                     
-                      <input type="radio" name="foo" onclick="disable()" id="radio4" class="css-checkbox" />
-                      <label for="radio4" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
-
-                      <input type="radio" name="foo" onclick="disable()" id="radio5" class="css-checkbox"/>
-                      <label for="radio5" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
-
-                      <input type="radio" name="foo" onclick="disable()" id="radio6" class="css-checkbox" />
-                      <label for="radio6" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
-
-
-                    </form>
-                  
-                    </div>
-              </section>
-              <div class="load">
-                <a href="" class = "pure-button remodal-confirm center">Load More</a>
+                      <div class="result hide">230 votes</div>
+<div class="load">
+                <a href="" class = "pure-button remodal-confirm center">Next Question</a>
               </div>
+
+                    </form>
+                  
+                    </div>
+              </section>
+       
 
                <div class="footer">
                 <hr class="half-rule">
@@ -275,8 +255,9 @@
             $(".enterchoice").append("<input type='text' class='modalq' placeholder='Enter another choice'>");
           });
 
-          
-
+          $("form").click(function(){
+            $("div").slideDown();
+          });     
 
         });
 
