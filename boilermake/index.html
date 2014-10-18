@@ -11,6 +11,22 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script href="bootstrap/js/bootstrap.min.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript">
+  function disable() 
+  {
+    length=document.myform.length;
+
+    for (i=0;i<length;i++) 
+    {
+      if (document.myform[i].type=="radio") 
+      {
+        for(i=0;i<length;i++)
+          document.myform[i].disabled="disabled";
+      }
+    }
+    
+  }
+  </script>
 
 
 <!--[if lte IE 8]>
@@ -66,6 +82,9 @@
                     </li>
                     <li class="nav-item">
                       <a class="pure-button trans" href="http://cgt.johnsylva.in">My Votes</a>
+                    </li>
+                      <li class="nav-item">
+                      <a class="pure-button trans" href="http://cgt.johnsylva.in">My Strolls</a>
                     </li>
                     <li class="nav-item">
                       
@@ -173,33 +192,20 @@
               <section id="a">
                   <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
                   <div class="container">
-                    <form action="">
+                    <form id = "1" class="qchoices" name="myform" action="">
                      
-                      <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" />
-                      <label for="radio4" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
+                      <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" />
+                      <label for="radio1" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
 
-                      <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox"/>
-                      <label for="radio5" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
+                      <input type="radio" name="foo" onclick="disable()" id="radio2" class="css-checkbox"/>
+                      <label for="radio2" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
 
-                      <input type="radio" name="radiog_dark" id="radio6" class="css-checkbox" />
-                      <label for="radio6" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
+                      <input type="radio" name="foo" onclick="disable()" id="radio3" class="css-checkbox" />
+                      <label for="radio3" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
 
 
                     </form>
-                  <!-- <div rel = "choice1" class="choices float trans">
-                    <div class="choices-after"></div>
-
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">34 votes</div>
-                  </div>
-                  <div rel = "choice2" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">30 votes</div>
-                  </div>
-                  <div rel = "choice3" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">40 votes</div>
-                  </div> -->
+                  
                     </div>
               </section>
              
@@ -209,36 +215,25 @@
               <section id="a">
                   <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
                   <div class="container">
-                    <form action="">
+                    <form id = "2" class="qchoices" name="myform" action="">
                      
-                      <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" />
+                      <input type="radio" name="foo" onclick="disable()" id="radio4" class="css-checkbox" />
                       <label for="radio4" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
 
-                      <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox"/>
+                      <input type="radio" name="foo" onclick="disable()" id="radio5" class="css-checkbox"/>
                       <label for="radio5" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
 
-                      <input type="radio" name="radiog_dark" id="radio6" class="css-checkbox" />
+                      <input type="radio" name="foo" onclick="disable()" id="radio6" class="css-checkbox" />
                       <label for="radio6" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
 
 
                     </form>
-                  <!-- <div rel = "choice1" class="choices float trans">
-                    <div class="choices-after"></div>
-
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">34 votes</div>
-                  </div>
-                  <div rel = "choice2" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">30 votes</div>
-                  </div>
-                  <div rel = "choice3" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">40 votes</div>
-                  </div> -->
+                  
                     </div>
               </section>
-              
+              <div class="load">
+                <a href="" class = "pure-button remodal-confirm center">Load More</a>
+              </div>
 
                <div class="footer">
                 <hr class="half-rule">
@@ -271,29 +266,17 @@
         <button id="addnew">Add more choices</button>
       </div>
     </div>
+        
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
-            $(function(){
-                $('.choices').on('click', function(){
-                    //figure out which panel to active
-                    var choiceToShow = $(this).attr('rel');
-                    $(this).addClass('active');
-                    
-                    
-                    //fade other panels
-
-                });
-            });
-            $(function(){
-                $('.choices .result').on('click').removeClass('.hide');
-            });
-        </script>
         <script>
         $(document).ready(function(){
 
           $("#addnew").click(function(){
             $(".enterchoice").append("<input type='text' class='modalq' placeholder='Enter another choice'>");
           });
+
+          
+
 
         });
 
