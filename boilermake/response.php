@@ -1,0 +1,1 @@
+<!-- Lock users from editing their polls after submitted once -->

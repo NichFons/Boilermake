@@ -1,3 +1,16 @@
+<?php
+/**
+* include your database connection from a protected directory
+* by include it from the directory above (../) where this file is
+**/
+include('connection.php');
+
+// set cookie for a day
+setcookie('user_long', $_GET['long'], time() + (86400), "/");
+setcookie('user_lat', $_GET['lat'], time() + (86400), "/");
+// 86400 is one day
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,6 +22,25 @@
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <link rel="stylesheet" href="css/component.css">
 
+<script>
+  // Grab Location
+  function getLocation()
+  {
+    if (navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else{x.innerHTML="Geolocation is not supported by this browser.";}
+    }
+      function showPosition(position)
+    {
+        
+    var long = position.coords.longitude;
+    var lat = position.coords.latitude;
+  }
+
+  getLocation()
+</script>
 <!--[if lte IE 8]>
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
@@ -69,33 +101,39 @@
                 </nav>
               </div>
             </div>
-
             <div class="content pure-u-1 pure-u-md-3-4">
+            <?php
+
+            //run the query
+            $loop = mysql_query("SELECT * FROM Poll")
+                or die (mysql_error());
+
+            while ($row = mysql_fetch_array($loop))
+            {      
+            ?>
+            
               <section id="a">
-                  <h2 div="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
+                  <h2 div="question" id="<?php echo $row['PollID']; ?>"><?php echo $row['Question']; ?></h2>
                   <div class="container">
-                  <div rel = "choice1" class="choices float trans">
+                  <?php 
+                    $query = 'SELECT * FROM Response where PollID = ' . $row['PollID'];
+                    $result = mysql_query($query)
+                        or die (mysql_error());
+
+                    while ($row = mysql_fetch_array($result))
+                    {   
+                    ?>
+                  <div rel = "choice" class="choices float trans">
                     <div class="choices-after"></div>
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">34 votes</div>
+                      <h3><?php echo $row['Response'] ?></h3>
+                      <div class="result hide"><?php echo $row['Count'] ?></div>
                   </div>
-                  <div rel = "choice2" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">30 votes</div>
-                  </div>
-                  <div rel = "choice3" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">40 votes</div>
-                  </div>
+                   <?php } ?>
                     </div>
               </section>
-             
               <hr class="half-rule">
-              <!-- A wrapper for all the blog posts -->
-              
-
+         <?php } ?>
                <div class="footer">
-                <hr class="half-rule">
                 <div class="pure-g">
                 	<div class="pure-u-1 pure-u-md-1-3 foot-tag">
                 		<h3 class="brand-tagline foot-tag">Created by John Sylvain // David Teter // Nick Fonseca</h3>

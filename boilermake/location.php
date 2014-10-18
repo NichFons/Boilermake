@@ -1,0 +1,1 @@
+<!-- Create a cookie to store location and PHP Session ID -->
