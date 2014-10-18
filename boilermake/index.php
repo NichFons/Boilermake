@@ -4,12 +4,7 @@
 * by include it from the directory above (../) where this file is
 **/
 include('connection.php');
-
-// set cookie for a day
-setcookie('user_long', $_GET['long'], time() + (86400), "/");
-setcookie('user_lat', $_GET['lat'], time() + (86400), "/");
-// 86400 is one day
-
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,25 +16,19 @@ setcookie('user_lat', $_GET['lat'], time() + (86400), "/");
   <title>Stroll</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <link rel="stylesheet" href="css/component.css">
-
+<script src="js/geoPosition.js"></script>
 <script>
-  // Grab Location
-  function getLocation()
-  {
-    if (navigator.geolocation)
-    {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    }
-    else{x.innerHTML="Geolocation is not supported by this browser.";}
-    }
-      function showPosition(position)
-    {
-        
-    var long = position.coords.longitude;
-    var lat = position.coords.latitude;
-  }
-
-  getLocation()
+geoPosition.init()
+function lookup_location() {
+  geoPosition.getCurrentPosition(show_map, show_map_error);
+}
+function show_map(loc) {
+    alert('show data');
+}
+function show_map_error() {
+  alert('show error');
+}
+lookup_location();
 </script>
 <!--[if lte IE 8]>
   
