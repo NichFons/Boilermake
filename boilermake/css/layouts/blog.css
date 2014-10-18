@@ -232,7 +232,8 @@ ul {
     transition:all 0.3s;
 }
 h3.foot-tag {
-    margin-top: 25px
+    margin-top: 25px;
+    margin-bottom: 40px;
 }
 h1.sec-head {
     font-family: "Raleway";
@@ -303,7 +304,7 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 }
 
 h2.question {
-    font-size: 42pt
+    font-size: 36pt
 }
 /*
  * SimpleModal OSX Style Modal Dialog
@@ -332,13 +333,52 @@ h2.question {
 #osx-container p {margin-bottom:10px;}
 #osx-container span {color:#777;}
 
+input[type=radio].css-checkbox {
+                            position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+                        }
+
+                        input[type=radio].css-checkbox + label.css-label {
+                            padding-left:45px;
+                            height:40px; 
+                            /*display:inline-block;*/
+                            line-height:40px;
+                            background-repeat:no-repeat;
+                            background-position: 0 0;
+                            font-size:18pt;
+                            font-family: Open Sans;
+                            font-weight: 100;
+                            vertical-align:middle;
+                            cursor:pointer;
+
+                        }
+
+                        input[type=radio].css-checkbox:checked + label.css-label {
+                            background-position: 0 -40px;
+                        }
+                        label.css-label {
+                background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_d142225da6840f1ce25db440c4924194.png);
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+.modalq {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border-color: white
+}
+
+
+
 
 input {
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
     width: 100%;
-    margin-top:15px;
-    margin-bottom:15px;
+    padding: 10px;
+    margin: 5px;
 
 }
