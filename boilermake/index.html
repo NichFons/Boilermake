@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+  <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
+
+  <title>Stroll</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  <link rel="stylesheet" href="css/component.css">
+
+<!--[if lte IE 8]>
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+  
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+    
+    <!--<![endif]-->
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/blog-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/blog.css">
+        <!--<![endif]-->
+        <link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" type="text/css" href="css/ns-default.css" />
+
+        <link rel="stylesheet" type="text/css" href="css/hover.css" />
+        
+        
+        <script src="js/modernizr.custom.js"></script>
+        
+
+        
+        </head>
+        <body>
+<!-- 
+<div class="animated fadeIn"> -->
+          <div id="layout" class="pure-g">
+            <div class="z-top sidebar pure-u-1 pure-u-md-1-4">
+              <div class="header">
+                <hgroup>
+                  <h1 class="brand-title">Stroll</h1>
+                  <h2 class="brand-tagline">Vote on polls around you</h2>
+                </hgroup>
+
+                <nav class="nav">
+                  <ul class="nav-list">
+                    <li class="nav-item">
+                      <a class="pure-button trans" href="http://blog.johnsylva.in">Popular</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="pure-button trans" href="http://cgt.johnsylva.in">Recent</a>
+                    </li>
+
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+            <div class="content pure-u-1 pure-u-md-3-4">
+              <section id="a">
+                  <h2 div="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
+                  <div class="container">
+                  <div rel = "choice1" class="choices float trans">
+                    <div class="choices-after"></div>
+                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
+                      <div class="result hide">34 votes</div>
+                  </div>
+                  <div rel = "choice2" class="choices float trans">
+                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
+                      <div class="result hide">30 votes</div>
+                  </div>
+                  <div rel = "choice3" class="choices float trans">
+                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
+                      <div class="result hide">40 votes</div>
+                  </div>
+                    </div>
+              </section>
+             
+              <hr class="half-rule">
+              <!-- A wrapper for all the blog posts -->
+              
+
+               <div class="footer">
+                <hr class="half-rule">
+                <div class="pure-g">
+                	<div class="pure-u-1 pure-u-md-1-3 foot-tag">
+                		<h3 class="brand-tagline foot-tag">Created by John Sylvain // David Teter // Nick Fonseca</h3>
+                	</div>
+                	<div class="pure-u-1 pure-u-md-2-3">
+                		<ul id="navlist">
+                			<li class="ppad-right footer-soc"><a class="social" href="https://Github.com/VilJam"><img class="social-icon trans" src="img/Github.png" alt=""></a></li>
+                			<li class="footer-soc ppad-right"><a class="social" href="http://www.linkedin.com/pub/john-sylvain/72/564/2ab"><img class="social-icon trans" src="img/linkedin.png" alt=""></a></li>
+                			<li class="footer-soc pppad-right"><a class="social" href="http://twitter.com/MagicJahn"><img class="social-icon trans" src="img/twitter.png" alt=""></a></li>
+                		</ul>	
+                	</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+            $(function(){
+                $('.choices').on('click', function(){
+                    //figure out which panel to active
+                    var choiceToShow = $(this).attr('rel');
+                    $(this).addClass('active');
+                    
+                    
+                    //fade other panels
+
+                });
+            });
+            $(function(){
+                $('.choices .result').on('click').removeClass('.hide');
+            });
+        </script>
+
+        <script src="js/modernizr.not.js"></script>
+      </body>
+      </html>

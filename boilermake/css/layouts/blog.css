@@ -1,0 +1,307 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(61, 146, 201);
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+h1 {
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 30pt;
+}
+h2.question {
+    font-size: 42pt
+}
+
+h3 {
+    font-weight: 100;
+}
+
+/* LAYOUT CSS */
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#layout {
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    top: auto;
+    margin: 3em auto;
+}
+
+.sidebar {
+    /*background: rgb(61, 79, 93);*/
+    background: #4A4A4A;
+    color: #fff;
+}
+
+.brand-title,
+.brand-tagline {
+    margin: 0;
+}
+.brand-title {
+    text-transform: uppercase;
+}
+.brand-tagline {
+    font-weight: 300;
+    color: rgb(189, 195, 199);
+    opacity: .75;
+}
+
+.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.nav-item {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+.nav-item a {
+    background: transparent;
+    border: 2px solid white;
+    color: #fff;
+    margin-top: 1em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 85%;
+}
+.nav-item a:hover,
+.nav-item a:focus {
+    border: 2px solid #34AADC;
+    text-decoration: none;
+}
+
+.content-subhead {
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #eee;
+    padding: 0.4em 0;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.content {
+    padding: 2em 1em 0;
+    background-color: white
+}
+
+.post {
+    padding-bottom: 2em;
+}
+.post-title {
+    font-size: 2em;
+    color: #222;
+    margin-bottom: 0.2em;
+}
+.post-avatar {
+    border-radius: 50px;
+    float: right;
+    margin-left: 1em;
+}
+.post-description {
+    font-family: Georgia, "Cambria", serif;
+    color: #444;
+    line-height: 1.8em;
+}
+.post-meta {
+    color: #999;
+    font-size: 90%;
+    margin: 0;
+}
+
+.post-category {
+    margin: 0 0.1em;
+    padding: 0.3em 1em;
+    color: #fff;
+    background: #999;
+    font-size: 80%;
+}
+    .post-category-design {
+        background: #5aba59;
+    }
+    .post-category-pure {
+        background: #4d85d1;
+    }
+    .post-category-yui {
+        background: #8156a7;
+    }
+    .post-category-js {
+        background: #df2d4f;
+    }
+
+.post-images {
+    margin: 1em 0;
+}
+.post-image-meta {
+    margin-top: -3.5em;
+    margin-left: 1em;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+}
+
+.footer {
+    text-align: center;
+    padding: 1em 0;
+}
+.footer a {
+    color: #ccc;
+    font-size: 80%;
+}
+.footer .pure-menu a:hover,
+.footer .pure-menu a:focus {
+    background: none;
+}
+
+@media (min-width: 48em) {
+    .content {
+        padding: 2em 3em 0;
+        margin-left: 25%;
+    }
+
+    .header {
+        margin: 80% 2em 0;
+        text-align: right;
+    }
+.sidebar {
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+    }
+}
+
+/*My CSS*/
+hr {
+     border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.half-rule {
+margin-top: 40px;
+    margin-bottom: 40px;
+
+}
+#navlist li
+{
+display: inline;
+list-style-type: none;
+float:none;
+}
+.ppad-right {
+    padding-right: 20px;
+}
+li {
+  display: inline-block;
+  
+   padding-left: 0px;
+    margin-left: 0px
+}
+ul {
+    padding-left: 0px;
+    margin-left: 0px
+}
+.social-icon {
+  height: 50px;
+  width: auto;
+  opacity: .4;
+}
+.social-icon:hover {
+  opacity: 1;
+}
+.right-foot {
+  float: right;
+}
+.trans {
+    transition:all 0.3s;
+}
+h3.foot-tag {
+    margin-top: 25px
+}
+h1.sec-head {
+    font-family: "Raleway";
+    font-size: 42pt;
+    text-align: center
+}
+h2 {
+    font-family: "Open Sans";
+    font-weight: 300;
+}
+h3 {
+     font-family: "Open Sans";
+    font-weight: 100;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+#navlist li
+{
+display: inline;
+list-style-type: none;
+float:right;
+}
+.pppad-right {
+    padding-right: 20px;
+}
+
+
+}
+
+@media (min-width: 768px) {
+
+#navlist li
+{
+display: inline;
+list-style-type: none;
+float:right;
+}
+.pppad-right {
+    padding-right: 20px;
+}
+
+
+}
+
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 100%; padding: 0; margin: 0;}
+
+
+.choices {
+    border: 1px solid #ecf0f1;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 10px;
+    margin: 10px;
+
+}
+.choices:hover {
+    background-color: #ecf0f1;
+}
+.active {
+    border: 1px solid #555;
+}
+.hide {
+    display: none;
+}
+
+h2.question {
+    font-size: 42pt
+}
