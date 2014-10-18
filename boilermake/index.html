@@ -62,9 +62,107 @@
         
         </head>
         <body>
+
+
+<div class="pure-g container">
+  
+  <div class="pure-u-1-4 left">
+    <li><h1>stroll</h1></li>
+    <li class="about">
+      <a href="#about"><h3 class="about trans">about</h3></a>
+    </li>
+    
+
+  </div>
+  <div class="pure-u-3-4 right">
+    <a href="#modal"><img class = "createnew trans" src="img/new85.png" alt=""></a>
+  </div>
+
+</div>
+
+<div class="pure-g container center">
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="">Popular</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="">Recent</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button yellow" href="">My Votes</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button green" href="">My Strolls</a></div>
+</div>
+<hr class="half-rule container margin-hr">
+<div class="pure-g container">
+  <div class="pure-u-1">
+                  <section id="a">
+                      <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
+                      <div class="container">
+                        <form id = "1" class="qchoices" name="myform" action="">
+                         
+                          <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
+                          <label for="radio1" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
+                          <div class="result hide">30 votes</div>
+
+                          <input type="radio" name="foo" onclick="disable()" id="radio2" class="css-checkbox" data-id="show"/>
+                          <label for="radio2" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
+                          <div class="result hide">40 votes</div>
+
+                          <input type="radio" name="foo" onclick="disable()" id="radio3" class="css-checkbox" data-id="show"/>
+                          <label for="radio3" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
+                          <div class="result hide">230 votes</div>
+    <div class="load">
+                    <a href="" type = "submit" class = "pure-button remodal-confirm center">Next Question</a>
+                  </div>
+
+                        </form>
+                      
+                        </div>
+                  </section>
+    
+  </div>
+</div>
+
+
+
+<div class="remodal" data-remodal-id="modal">
+    <h1>Create a new stroll</h1>
+    <form action="">
+      <input type="text" required placeholder="What's your question?">
+      <hr class="half-rule">
+      <input type="text" required placeholder="Enter a choice!">
+      <input type="text" required placeholder="And another!">
+      <input type="text" placeholder="One more (only if you are feeling adventurous)">
+      <a class="remodal-cancel" href="#">Cancel</a>
+      <a class="remodal-confirm" type="submit" href="#">Submit!</a>
+    </form>
+    <br>
+</div>
+
+
+<div class="remodal" data-remodal-id="about">
+    <h1>About stroll</h1>
+    wooooooo
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 
 <div class="animated fadeIn"> -->
-          <div id="layout" class="pure-g">
+         <!--  <div id="layout" class="pure-g">
             <div class="z-top sidebar pure-u-1 pure-u-md-1-4">
               <div class="header">
                 <hgroup>
@@ -134,47 +232,6 @@
 
           
 
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="../libs/jquery/jquery-1.11.1.min.js"><\/script>')</script>
-            <script src="../src/jquery.remodal.js"></script>
-
-            <!-- Events -->
-            <script>
-                $(document).on('open', '.remodal', function () {
-                    console.log('open');
-                });
-
-                $(document).on('opened', '.remodal', function () {
-                    console.log('opened');
-                });
-
-                $(document).on('close', '.remodal', function () {
-                    console.log('close');
-                });
-
-                $(document).on('closed', '.remodal', function () {
-                    console.log('closed');
-                });
-
-                $(document).on('confirm', '.remodal', function () {
-                    console.log('confirm');
-                });
-
-                $(document).on('cancel', '.remodal', function () {
-                    console.log('cancel');
-                });
-
-            //    You can open or close it like this:
-            //    $(function () {
-            //        var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
-            //        inst.open();
-            //        inst.close();
-            //    });
-
-                //  Or init in this way:
-                var inst = $('[data-remodal-id=modal2]').remodal();
-                //  inst.open();
-            </script>
 
 
 
@@ -218,10 +275,10 @@
                <div class="footer">
                 <hr class="half-rule">
                 <div class="pure-g">
-                	<div class="pure-u-1 foot-tag">
-                		<h3 class="brand-tagline foot-tag">Created by John Sylvain // David Teter // Nick Fonseca</h3>
-                	</div>
-                	
+                  <div class="pure-u-1 foot-tag">
+                    <h3 class="brand-tagline foot-tag">Created by John Sylvain // David Teter // Nick Fonseca</h3>
+                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -245,7 +302,7 @@
         </form>
         <button id="addnew">Add more choices</button>
       </div>
-    </div>
+    </div> -->
         
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script>
@@ -266,5 +323,46 @@
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/osx.js'></script>
         <script src="js/modernizr.not.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="../libs/jquery/jquery-1.11.1.min.js"><\/script>')</script>
+            <script src="../src/jquery.remodal.js"></script>
+
+            
+            <script>
+                $(document).on('open', '.remodal', function () {
+                    console.log('open');
+                });
+
+                $(document).on('opened', '.remodal', function () {
+                    console.log('opened');
+                });
+
+                $(document).on('close', '.remodal', function () {
+                    console.log('close');
+                });
+
+                $(document).on('closed', '.remodal', function () {
+                    console.log('closed');
+                });
+
+                $(document).on('confirm', '.remodal', function () {
+                    console.log('confirm');
+                });
+
+                $(document).on('cancel', '.remodal', function () {
+                    console.log('cancel');
+                });
+
+            //    You can open or close it like this:
+            //    $(function () {
+            //        var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
+            //        inst.open();
+            //        inst.close();
+            //    });
+
+                //  Or init in this way:
+                var inst = $('[data-remodal-id=modal2]').remodal();
+                //  inst.open();
+            </script>
       </body>
       </html>
