@@ -138,28 +138,11 @@
     <h1>About stroll</h1>
     wooooooo
 </div>
-        
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
-        $(document).ready(function(){
-
-          $("#addnew").click(function(){
-            $(".enterchoice").append("<input type='text' class='modalq' placeholder='Enter another choice'>");
-          });
-
-          $("form").click(function(){
-            $("div").slideDown();
-          });     
-
-        });
-
-        </script>
 
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/osx.js'></script>
         <script src="js/modernizr.not.js"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script>window.jQuery || document.write('<script src="../libs/jquery/jquery-1.11.1.min.js"><\/script>')</script>
             <script src="../src/jquery.remodal.js"></script>
             <script>
                 $(document).on('open', '.remodal', function () {
