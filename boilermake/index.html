@@ -9,6 +9,33 @@
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <link rel="stylesheet" href="css/component.css">
 
+<script>
+  // Grab Location
+  function getLocation()
+  {
+    if (navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    else{x.innerHTML="Geolocation is not supported by this browser.";}
+    }
+      function showPosition(position)
+    {
+        
+    var long = position.coords.longitude;
+    var lat = position.coords.latitude;
+  }
+
+  getLocation()
+</script>
+
+<?php
+  // set cookie for a day
+  setcookie('user_long', $_GET['long'], time() + (86400), "/");
+  setcookie('user_lat', $_GET['lat'], time() + (86400), "/");
+  // 86400 is one day
+?>
+
 <!--[if lte IE 8]>
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
