@@ -82,7 +82,7 @@ session_start();
             <?php
 
             //run the query
-            $loop = mysql_query("SELECT * FROM Poll")
+            $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 10")
                 or die (mysql_error());
 
             while ($row = mysql_fetch_array($loop))
