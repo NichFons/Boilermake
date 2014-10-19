@@ -1,0 +1,6 @@
++/-   0.045325  Degrees Latitude per 5 KM
++/-   0.059003  Degrees Longitude per 5 KM
+
+These are Jank Conversions and should only be used 
+in West Lafayette, IN or equivalent location along
+the 40.42th Parallel
