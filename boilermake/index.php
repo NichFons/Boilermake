@@ -1,5 +1,6 @@
 <?php
 session_start();
+$session = session_id();
 include('connection.php');
 ?>
 <!doctype html>
@@ -66,13 +67,13 @@ include('connection.php');
 
 <div class="pure-g container">
   
-  <div class="pure-u-1-4 left">
+  <div class="pure-u-1-2 left">
     <li><h1>stroll</h1></li>
     <li class="about">
       <a href="#about"><h3 class="about trans">about</h3></a>
     </li>
   </div>
-  <div class="pure-u-3-4 right">
+  <div class="pure-u-1-2 right">
     <a href="#modal"><img class = "createnew trans" src="img/new85.png" alt=""></a>
   </div>
 
@@ -92,27 +93,27 @@ include('connection.php');
                     //run the query
                     //recent
                     if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //Popular
                     else if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //My votes
                     else if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 10")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 10")
                         or die (mysql_error());
                     }
                     //My strolls
                     else if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 10")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 10")
                         or die (mysql_error());
                     }
                     //Start from beginning
                     else {
-                        $loop = mysql_query("SELECT * FROM Poll limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
                         or die (mysql_error());
                     }
 
@@ -138,6 +139,7 @@ include('connection.php');
                         <?php } ?>
                         <div class="load">
                             <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
+                            <input class="hide" value="<?php echo $row['PollID'] ?>" name="PollID">
                             <input type="submit" class ="confirm-submit center">
                           </div>
 
@@ -168,13 +170,14 @@ include('connection.php');
 
 <div class="remodal" data-remodal-id="about">
     <h1>About stroll</h1>
-    wooooooo
-</div>
+    <p class="left">Allows users to create polls for people in their local area. Need to know what the best restraunt in town is? Make a stroll poll. Have to know where to find the best parties are around your campus? Make a stroll poll. Looking to figure out the opinions of a band in your area? Make a stroll poll.</p>
 
-<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
-<script type='text/javascript' src='js/osx.js'></script>
-        <script src="js/modernizr.not.js"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<p class="left">No account is needed to vote or create poll. No usernames. No nonsense. Just go to the app on your laptop, Android, or iOS device and find out what people near you think.</p>
+
+<p class="left">Created by <a href="http://johnsylva.in">John Sylvain</a>, <a href="http://cosmicshades.com">David Teter</a>, and <a href="">Nick Fonseca</a>.</p>
+</div>
+           
+            <script src="js/modernizr.not.js"></script>
             <script src="../src/jquery.remodal.js"></script>
 
             <script>
