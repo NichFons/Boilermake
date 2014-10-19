@@ -94,14 +94,14 @@ include('connection.php');
                     //recent
                     if($_GET['type'] == "recent"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
-                                    and (longitude between " . $_SESSION['user_long'] . "-0.059 and " . $_SESSION['user_long'] . "+0.059) and (latitude between " . $_SESSION['user_lat'] . "-0.045 and " . $_SESSION['user_lat'] . "+0.045 )
+                                    and (longitude between " . $_SESSION['user_long'] . "-0.001 and " . $_SESSION['user_long'] . "+0.001) and (latitude between " . $_SESSION['user_lat'] . "-0.001 and " . $_SESSION['user_lat'] . "+0.001 )
                                     order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //Popular
                     else if($_GET['type'] == "popular"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid')
-                                and (longitude between " . $_SESSION['user_long'] . "-0.059 and " . $_SESSION['user_long'] . "+0.059) and (latitude between " . $_SESSION['user_lat'] . "-0.045 and " . $_SESSION['user_lat'] . "+0.045 )
+                                and (longitude between " . $_SESSION['user_long'] . "-0.001 and " . $_SESSION['user_long'] . "+0.001) and (latitude between " . $_SESSION['user_lat'] . "-0.001 and " . $_SESSION['user_lat'] . "+0.001 )
                                 order by PollDate limit 1")
                         or die (mysql_error());
                     }
@@ -118,7 +118,7 @@ include('connection.php');
                     //Start from beginning
                     else {
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
-                        or die (mysql_error());
+                            or die (mysql_error());
                     }
                     if (!mysql_num_rows($loop)) { ?>
                         
@@ -130,6 +130,11 @@ include('connection.php');
                     ?>
                      <section id="a">
                       <h2 class="question"><?php echo $poll['Question']; ?></h2>
+                      <p><?php if ($_GET['type'] == "strolls" || $_GET['type'] == "votes") {
+                        
+                        echo "Text 'stroll " . $poll['PollID'] ."' to (812)558-3919"; 
+                         
+                        }?></p>
                       <div class="container">
                         <form id = "<?php echo $poll['PollID']; ?>" class="qchoices" name="myform" action="vote.php" method="post">
                          <?php 
