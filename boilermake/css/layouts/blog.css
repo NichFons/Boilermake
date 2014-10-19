@@ -299,9 +299,7 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 .active {
     border: 1px solid #555;
 }
-.hide {
-    display: none;
-}
+
 
 h2.question {
     font-size: 36pt
@@ -381,4 +379,116 @@ input {
     padding: 10px;
     margin: 5px;
 
+}
+
+.center {
+    margin-right: 0 auto;
+    margin-left: 0 auto;
+    text-align: center;
+}
+.load {
+    text-align: center;
+    margin-top: 40px
+}
+
+
+.result {
+    font-size: 20pt;
+    color:#58D999;
+}
+.hide {
+    display: none;
+}
+
+.container {
+    max-width: 740px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+}
+.left {
+    text-align: left
+}
+.right {
+    text-align: right;
+}
+
+.createnew {
+    width: 50px;
+    height: auto;
+    margin-top: 15px;
+    opacity: .5;
+}
+.createnew:hover {
+    opacity: 1;
+}
+.margin-navbar {
+    margin-bottom: 15px;
+}
+.margin-hr {
+    margin-bottom: 0px;
+}
+.blue {
+    background-color: #00C1E2;
+}
+.green {
+    background-color: #58D999;
+}
+.yellow {
+    background-color: #EAC34E;
+}
+.red {
+    background-color: #E65679;
+}
+
+li.about {
+    margin-left: 30px;
+    color: #95a5a6;
+}
+
+h3.about {
+    color: #95a5a6;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 10px;
+}
+h3.about:hover {
+    text-decoration: none;
+    border-bottom: 2px solid #95a5a6;
+    padding-bottom: 0px;
+}
+a:hover {
+   text-decoration: none; 
+}
+
+
+
+
+.confirm-submit, .remodal-cancel {
+    display: inline-block;
+    width: 120px;
+    padding: 9px 0;
+    margin: 0 0 5px 0;
+
+    font-size: 10pt;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background-clip: padding-box;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.confirm-submit {
+    border: 2px solid #16a085;
+    background: #f4f4f4;
+    color: #16a085;
+}
+
+.confirm-submit:hover, .confirm-submit:active {
+    background: #16a085;
+    color: #f4f4f4;
 }

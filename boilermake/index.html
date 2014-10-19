@@ -11,6 +11,22 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script href="bootstrap/js/bootstrap.min.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript">
+  function disable() 
+  {
+    length=document.myform.length;
+
+    for (i=0;i<length;i++) 
+    {
+      if (document.myform[i].type=="radio") 
+      {
+        for(i=0;i<length;i++)
+          document.myform[i].disabled="disabled";
+      }
+    }
+    
+  }
+  </script>
 
 
 <!--[if lte IE 8]>
@@ -46,80 +62,105 @@
         
         </head>
         <body>
-<!-- 
-<div class="animated fadeIn"> -->
-          <div id="layout" class="pure-g">
-            <div class="z-top sidebar pure-u-1 pure-u-md-1-4">
-              <div class="header">
-                <hgroup>
-                  <h1 class="brand-title">Stroll</h1>
-                  <h2 class="brand-tagline">Vote on polls around you</h2>
-                </hgroup>
 
-                <nav class="nav">
-                  <ul class="nav-list">
-                    <li class="nav-item">
-                      <a class="pure-button trans" href="http://blog.johnsylva.in">Popular</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="pure-button trans" href="http://cgt.johnsylva.in">Recent</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="pure-button trans" href="http://cgt.johnsylva.in">My Votes</a>
-                    </li>
-                    <li class="nav-item">
+
+<div class="pure-g container">
+  
+  <div class="pure-u-1-2 left"><!-- CHANGE -->
+    <li><h1>stroll</h1></li>
+    <li class="about">
+      <a href="#about"><h3 class="about trans">about</h3></a>
+    </li>
+    
+
+  </div>
+  <div class="pure-u-1-2 right"><!-- CHANGE -->
+    <a href="#modal"><img class = "createnew trans" src="img/new85.png" alt=""></a>
+  </div>
+
+</div>
+
+<div class="pure-g container center">
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="">Popular</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="">Recent</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button yellow" href="">My Votes</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button green" href="">My Strolls</a></div>
+</div>
+<hr class="half-rule container margin-hr">
+<div class="pure-g container">
+  <div class="pure-u-1">
+                  <section id="a">
+                      <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
+                      <div class="container">
+                        <form id = "1" class="qchoices" name="myform" action="">
+                         
+                          <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
+                          <label for="radio1" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
+                          <div class="result hide">30 votes</div>
+
+                          <input type="radio" name="foo" onclick="disable()" id="radio2" class="css-checkbox" data-id="show"/>
+                          <label for="radio2" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
+                          <div class="result hide">40 votes</div>
+
+                          <input type="radio" name="foo" onclick="disable()" id="radio3" class="css-checkbox" data-id="show"/>
+                          <label for="radio3" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
+                          <div class="result hide">230 votes</div>
+    <div class="load">
+                    <a href="" type = "submit" class = "pure-button remodal-confirm center">Next Question</a>
+                  </div>
+
+                        </form>
                       
+                        </div>
+                  </section>
+    
+  </div>
+</div>
 
-                       
-                       <a href="#modal" class="pure-button trans">Submit a Stroll</a>
 
-                      
-                    </li>
 
-                  </ul>
-                </nav>
-              </div>
-            </div>
+<div class="remodal" data-remodal-id="modal">
+    <h1>Create a new stroll</h1>
+    <form action="">
+      <input type="text" required placeholder="What's your question?">
+      <hr class="half-rule">
+      <input type="text" required placeholder="Enter a choice!">
+      <input type="text" required placeholder="And another!">
+      <input type="text" placeholder="One more (only if you are feeling adventurous)">
+      <a class="remodal-cancel" href="#">Cancel</a>
+      <a class="confirm-submit" type="submit" href="#">Submit!</a>
+    </form>
+    <br>
+</div>
 
+
+<div class="remodal" data-remodal-id="about">
+    <h1>About stroll</h1>
+    <p class="left">Allows users to create polls for people in their local area. Need to know what the best restraunt in town is? Make a stroll poll. Have to know where to find the best parties are around your campus? Make a stroll poll. Looking to figure out the opinions of a band in your area? Make a stroll poll.</p>
+
+<p class="left">No account is needed to vote or create poll. No usernames. No nonsense. Just go to the app on your laptop, Android, or iOS device and find out what people near you think.</p>
+
+<p class="left">Created by <a href="http://johnsylva.in">John Sylvain</a>, <a href="http://cosmicshades.com">David Teter</a>, and <a href="">Nick Fonseca</a>.</p>
+</div>
         
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+        $(document).ready(function(){
 
-            <div class="content pure-u-1 pure-u-md-3-4">
+          $("form").click(function(){
+            $("div").slideDown();
+          });     
 
+        });
 
+        </script>
 
-
-
-
-
-
-
-
-
-
-                
-
-            <div class="remodal" data-remodal-id="modal">
-                <h1>Create a new question</h1>
-                <form action="">
-                  <input type="text" placeholder="What's you're question?"><br/>
-                  <hr class = 'half-rule'>
-                  <input type="text" placeholder="Enter a choice"><br/>
-                  <input type="text" placeholder="Enter another choice"><br/>
-                  <input type="text" placeholder="One more (If you're feeling adventurous)"><br/>
-                  <hr class = 'half-rule'>
-                  <a class="remodal-cancel" href="#">Cancel</a>
-                  <input type="submit" class="remodal-confirm" value="Submit">
-                </form>
-                
-            </div>
-
-          
-
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/osx.js'></script>
+        <script src="js/modernizr.not.js"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script>window.jQuery || document.write('<script src="../libs/jquery/jquery-1.11.1.min.js"><\/script>')</script>
             <script src="../src/jquery.remodal.js"></script>
-
-            <!-- Events -->
             <script>
                 $(document).on('open', '.remodal', function () {
                     console.log('open');
@@ -156,151 +197,5 @@
                 var inst = $('[data-remodal-id=modal2]').remodal();
                 //  inst.open();
             </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <section id="a">
-                  <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
-                  <div class="container">
-                    <form action="">
-                     
-                      <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" />
-                      <label for="radio4" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
-
-                      <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox"/>
-                      <label for="radio5" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
-
-                      <input type="radio" name="radiog_dark" id="radio6" class="css-checkbox" />
-                      <label for="radio6" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
-
-
-                    </form>
-                  <!-- <div rel = "choice1" class="choices float trans">
-                    <div class="choices-after"></div>
-
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">34 votes</div>
-                  </div>
-                  <div rel = "choice2" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">30 votes</div>
-                  </div>
-                  <div rel = "choice3" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">40 votes</div>
-                  </div> -->
-                    </div>
-              </section>
-             
-              <hr class="half-rule">
-              <!-- A wrapper for all the blog posts -->
-
-              <section id="a">
-                  <h2 class="question">Lorem ipsum Sit do Duis ut do mollit?</h2>
-                  <div class="container">
-                    <form action="">
-                     
-                      <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" />
-                      <label for="radio4" class="css-label radGroup2">Lorem ipsum Eu in et in voluptate fugiat pariatur velit reprehenderit in eiusmod sed adipisicing voluptate minim Excepteur minim amet ullamco et.</label><br/>
-
-                      <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox"/>
-                      <label for="radio5" class="css-label radGroup2">Lorem ipsum Ullamco aliquip proident occaecat aliquip do sunt deserunt eu nostrud Duis proident nisi nostrud sint.</label><br/>
-
-                      <input type="radio" name="radiog_dark" id="radio6" class="css-checkbox" />
-                      <label for="radio6" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
-
-
-                    </form>
-                  <!-- <div rel = "choice1" class="choices float trans">
-                    <div class="choices-after"></div>
-
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">34 votes</div>
-                  </div>
-                  <div rel = "choice2" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">30 votes</div>
-                  </div>
-                  <div rel = "choice3" class="choices float trans">
-                      <h3>Lorem ipsum Ea veniam ut Duis aliqua culpa dolore dolor id sint.</h3>
-                      <div class="result hide">40 votes</div>
-                  </div> -->
-                    </div>
-              </section>
-              
-
-               <div class="footer">
-                <hr class="half-rule">
-                <div class="pure-g">
-                	<div class="pure-u-1 foot-tag">
-                		<h3 class="brand-tagline foot-tag">Created by John Sylvain // David Teter // Nick Fonseca</h3>
-                	</div>
-                	
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div id="osx-modal-content">
-      <div id="osx-modal-title">Create New Question</div>
-      <div class="close"><a href="#" class="simplemodal-close">x</a></div>
-      <div id="osx-modal-data">
-        <form action="">
-          <h2>What's your question?</h2>
-          <input type="text" class = "modalq" placeholder="Enter your question here">
-          
-          <h2>What do you want people to vote on?</h2>
-          <div class="enterchoice">
-          <input type="text" class = "modalq" placeholder="Enter one of the choices">
-          <input type="text" class = "modalq" placeholder="Enter another choice">
-          </div>
-        </form>
-        <button id="addnew">Add more choices</button>
-      </div>
-    </div>
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
-            $(function(){
-                $('.choices').on('click', function(){
-                    //figure out which panel to active
-                    var choiceToShow = $(this).attr('rel');
-                    $(this).addClass('active');
-                    
-                    
-                    //fade other panels
-
-                });
-            });
-            $(function(){
-                $('.choices .result').on('click').removeClass('.hide');
-            });
-        </script>
-        <script>
-        $(document).ready(function(){
-
-          $("#addnew").click(function(){
-            $(".enterchoice").append("<input type='text' class='modalq' placeholder='Enter another choice'>");
-          });
-
-        });
-
-        </script>
-
-<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
-<script type='text/javascript' src='js/osx.js'></script>
-        <script src="js/modernizr.not.js"></script>
       </body>
       </html>

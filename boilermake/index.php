@@ -1,10 +1,6 @@
 <?php
-/**
-* include your database connection from a protected directory
-* by include it from the directory above (../) where this file is
-**/
-include('connection.php');
 session_start();
+include('connection.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +12,26 @@ session_start();
   <title>Stroll</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <link rel="stylesheet" href="css/component.css">
-<script src="js/geoPosition.js"></script>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script href="bootstrap/js/bootstrap.min.js"></script>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript">
+  function disable() 
+  {
+    length=document.myform.length;
+
+    for (i=0;i<length;i++) 
+    {
+      if (document.myform[i].type=="radio") 
+      {
+        for(i=0;i<length;i++)
+          document.myform[i].disabled="disabled";
+      }
+    }
+    
+  }
+  </script>
+
 
 <!--[if lte IE 8]>
   
@@ -41,136 +56,12 @@ session_start();
         <link rel="stylesheet" type="text/css" href="css/ns-default.css" />
 
         <link rel="stylesheet" type="text/css" href="css/hover.css" />
-        
+        <link rel="stylesheet" type="text/css" href="css/grey.css" />
+        <script src="js/jquery.remodal.js"></script>
+        <link rel="stylesheet" href="css/jquery.remodal.css">
         
         <script src="js/modernizr.custom.js"></script>
-        
-
-        
-        </head>
-        <body>
-<!-- 
-<div class="animated fadeIn"> -->
-          <div id="layout" class="pure-g">
-            <div class="z-top sidebar pure-u-1 pure-u-md-1-4">
-              <div class="header">
-                <hgroup>
-                  <h1 class="brand-title">Stroll</h1>
-                  <h2 class="brand-tagline">Vote on polls around you</h2>
-                </hgroup>
-
-                <nav class="nav">
-                  <ul class="nav-list">
-                    <li class="nav-item">
-                      <a class="pure-button trans" href="?type=popular">Popular</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="pure-button trans" href="?type=recent">Recent</a>
-                    </li>
-                    <li class="nav-item">
-                      <div id='osx-modal'>
-
-                       <a href='#' class='osx pure-button trans'>Add New Question</a>
-                      </div>
-                    </li>
-
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <div class="content pure-u-1 pure-u-md-3-4">
-            <?php
-
-            //run the query
-            $loop = mysql_query("SELECT * FROM Poll")
-                or die (mysql_error());
-
-            while ($row = mysql_fetch_array($loop))
-            {      
-            ?>
-            
-              <section id="a">
-                  <h2 div="question" id="<?php echo $row['PollID']; ?>"><?php echo $row['Question']; ?></h2>
-                  <div class="container">
-                  <?php 
-                    $query = 'SELECT * FROM Response where PollID = ' . $row['PollID'];
-                    $result = mysql_query($query)
-                        or die (mysql_error());
-
-                    while ($row = mysql_fetch_array($result))
-                    {   
-                    ?>
-                  <div rel = "choice" class="choices float trans">
-                    <div class="choices-after"></div>
-                      <h3><?php echo $row['Response'] ?></h3>
-                      <div class="result hide"><?php echo $row['Count'] ?></div>
-                  </div>
-                   <?php } ?>
-                    </div>
-              </section>
-              <hr class="half-rule">
-         <?php } ?>
-               <div class="footer">
-                <div class="pure-g">
-                	<div class="pure-u-1 pure-u-md-1-3 foot-tag">
-                		<h3 class="brand-tagline foot-tag">Created by John Sylvain // David Teter // Nick Fonseca</h3>
-                	</div>
-                	<div class="pure-u-1 pure-u-md-2-3">
-                		<ul id="navlist">
-                			<li class="ppad-right footer-soc"><a class="social" href="https://Github.com/VilJam"><img class="social-icon trans" src="img/Github.png" alt=""></a></li>
-                			<li class="footer-soc ppad-right"><a class="social" href="http://www.linkedin.com/pub/john-sylvain/72/564/2ab"><img class="social-icon trans" src="img/linkedin.png" alt=""></a></li>
-                			<li class="footer-soc pppad-right"><a class="social" href="http://twitter.com/MagicJahn"><img class="social-icon trans" src="img/twitter.png" alt=""></a></li>
-                		</ul>	
-                	</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div id="osx-modal-content">
-      <div id="osx-modal-title">Create New Question</div>
-      <div class="close"><a href="#" class="simplemodal-close">x</a></div>
-      <div id="osx-modal-data">
-        <form action="">
-          <h2>What's your question?</h2>
-          <input type="text" placeholder="Enter your question here">
-          
-          <h2>What do you want people to vote on?</h2>
-          <div class="enterchoice">
-          <input type="text" placeholder="Enter one of the choices">
-          <input type="text" placeholder="Enter another choice">
-          </div>
-        </form>
-        <button id="addnew">Add more choices</button>
-      </div>
-    </div>
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
-            $(function(){
-                $('.choices').on('click', function(){
-                    //figure out which panel to active
-                    var choiceToShow = $(this).attr('rel');
-                    $(this).addClass('active');
-                    
-                    
-                    //fade other panels
-
-                });
-            });
-            $(function(){
-                $('.choices .result').on('click').removeClass('.hide');
-            });
-        </script>
-        <script>
-        $(document).ready(function(){
-
-          $("#addnew").click(function(){
-            $(".enterchoice").append("<input type='text' placeholder='Enter another choice'>");
-          });
-        });
-        </script>
+        <script src="js/geoPosition.js"></script>
         <script>
             geoPosition.init()
             function lookup_location() {
@@ -184,8 +75,146 @@ session_start();
             }
             lookup_location();
         </script>
+        
+        </head>
+        <body>
+
+
+<div class="pure-g container">
+  
+  <div class="pure-u-1-4 left">
+    <li><h1>stroll</h1></li>
+    <li class="about">
+      <a href="#about"><h3 class="about trans">about</h3></a>
+    </li>
+  </div>
+  <div class="pure-u-3-4 right">
+    <a href="#modal"><img class = "createnew trans" src="img/new85.png" alt=""></a>
+  </div>
+
+</div>
+
+<div class="pure-g container center">
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="?type=popular">Popular</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="?type=recent">Recent</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button yellow" href="?type=votes">My Votes</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button green" href="?type=strolls">My Strolls</a></div>
+</div>
+<hr class="half-rule container margin-hr">
+<div class="pure-g container">         
+  <div class="pure-u-1">
+                  <?php
+
+                    //run the query
+                    //recent
+                    $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        or die (mysql_error());
+
+                    while ($row = mysql_fetch_array($loop))
+                    {      
+                    ?>
+                     <section id="a">
+                      <h2 class="question"><?php echo $row['Question']; ?></h2>
+                      <div class="container">
+                        <form id = "<?php echo $row['PollID']; ?>" class="qchoices" name="myform" action="response.php" method="post">
+                         <?php 
+                    $query = 'SELECT * FROM Response where PollID = ' . $row['PollID'];
+                    $result = mysql_query($query)
+                        or die (mysql_error());
+
+                    while ($row = mysql_fetch_array($result))
+                    {   
+                    ?>
+                   
+                          <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
+                          <label for="radio1" class="css-label radGroup2"><?php echo $row['Response'] ?></label><br/>
+                          <div class="result hide"><?php echo $row['Count'] ?> votes</div>
+                        <?php } ?>
+                               <div class="load">
+                                <a type="submit" class = "pure-button remodal-confirm center">Next Question</a>
+                            </div>
+
+                    </form>
+                      
+                    </div>
+                  </section>
+                  <?php } ?>
+  </div>
+</div>
+
+
+
+<div class="remodal" data-remodal-id="modal">
+    <h1>Create a new stroll</h1>
+    <form method="post" action="response.php">
+      <input type="text" name='question' required placeholder="What's your question?">
+      <hr class="half-rule">
+      <input type="text" required placeholder="Enter a choice!">
+      <input type="text" required placeholder="And another!">
+      <input type="text" placeholder="One more (only if you are feeling adventurous)">
+      <a class="remodal-cancel" href="#">Cancel</a>
+      <a class="remodal-confirm" type="submit">Submit!</a>
+      <input class="pure-button" type="submit">
+    </form>
+    <br>
+</div>
+
+
+<div class="remodal" data-remodal-id="about">
+    <h1>About stroll</h1>
+    wooooooo
+</div>
+
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/osx.js'></script>
         <script src="js/modernizr.not.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="../src/jquery.remodal.js"></script>
+            <script>
+                $(document).on('open', '.remodal', function () {
+                    console.log('open');
+                });
+
+                $(document).on('opened', '.remodal', function () {
+                    console.log('opened');
+                });
+
+                $(document).on('close', '.remodal', function () {
+                    console.log('close');
+                });
+
+                $(document).on('closed', '.remodal', function () {
+                    console.log('closed');
+                });
+
+                $(document).on('confirm', '.remodal', function () {
+                    console.log('confirm');
+                });
+
+                $(document).on('cancel', '.remodal', function () {
+                    console.log('cancel');
+                });
+
+            //    You can open or close it like this:
+            //    $(function () {
+            //        var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
+            //        inst.open();
+            //        inst.close();
+            //    });
+
+                //  Or init in this way:
+                var inst = $('[data-remodal-id=modal2]').remodal();
+                //  inst.open();
+            </script>
+            <script>
+        $(document).ready(function(){
+
+          $("form").click(function(){
+            $("div").slideDown();
+          });     
+
+        });
+
+        </script>
       </body>
       </html>
