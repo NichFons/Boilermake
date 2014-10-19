@@ -10,7 +10,7 @@
     echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 ?>
 <Response>
-    <Sms><?php 
+    <message><body><?php 
             $response = explode(" ", $_POST['Body']);
             if (strcasecmp($response[0], 'stroll') == 0) {
                 $pollnum = replace_null($response[1], '0');
@@ -85,5 +85,5 @@
                     echo 'Please input a valid number';
                 }
             }
-        ?></Sms>
+        ?></body></message>
 </Response>

@@ -80,8 +80,8 @@ include('connection.php');
 </div>
 
 <div class="pure-g container center">
-  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="?type=popular">Popular</a></div>
-  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="?type=recent">Recent</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="#">Popular</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="#">Recent</a></div>
   <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button yellow" href="?type=votes">My Votes</a></div>
   <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button green" href="?type=strolls">My Strolls</a></div>
 </div>
@@ -89,19 +89,19 @@ include('connection.php');
 <div class="pure-g container">         
   <div class="pure-u-1">
                   <?php
-
+                    $range = 10.000; //100m grains, x10 for 1k, x100 for 10k
                     //run the query
                     //recent
                     if($_GET['type'] == "recent"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
-                                    and (longitude between " . $_SESSION['user_long'] . "-0.001 and " . $_SESSION['user_long'] . "+0.001) and (latitude between " . $_SESSION['user_lat'] . "-0.001 and " . $_SESSION['user_lat'] . "+0.001 )
+                                    and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
                                     order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //Popular
                     else if($_GET['type'] == "popular"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid')
-                                and (longitude between " . $_SESSION['user_long'] . "-0.001 and " . $_SESSION['user_long'] . "+0.001) and (latitude between " . $_SESSION['user_lat'] . "-0.001 and " . $_SESSION['user_lat'] . "+0.001 )
+                                and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
                                 order by PollDate limit 1")
                         or die (mysql_error());
                     }
@@ -156,10 +156,12 @@ include('connection.php');
                           </div>
 
                     </form>
-                      
                     </div>
                   </section>
                   <?php } ?>
+                  <p class="hide"><?php echo "SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
+                                    and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
+                                    order by PollDate limit 1" ?></p>
   </div>
 </div>
 
