@@ -12,4 +12,9 @@ mysql_connect("localhost", "cosmics_bm", "5ron;[6IKmM.")
 mysql_select_db ("cosmics_bm")
      or die ('cannot select this database because ' .  mysql_error());
 
+function replace_null($value, $replace) {
+    if (is_null($value)) return $replace;
+    return $value;
+}
+
 ?>

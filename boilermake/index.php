@@ -56,7 +56,7 @@ include('connection.php');
                 $.get( "location.php", { user_long: loc.coords.longitude, user_lat: loc.coords.latitude } );
             }
             function show_map_error() {
-              alert('Geolocation Services is not working at the moment. Refresh the page to retry.');
+              
             }
             lookup_location();
         </script>
@@ -67,13 +67,13 @@ include('connection.php');
 
 <div class="pure-g container">
   
-  <div class="pure-u-1-2 left">
+  <div class="pure-u-3-4 left">
     <li><h1>stroll</h1></li>
     <li class="about">
       <a href="#about"><h3 class="about trans">about</h3></a>
     </li>
   </div>
-  <div class="pure-u-1-2 right">
+  <div class="pure-u-1-4 right">
     <a href="#modal"><img class = "createnew trans" src="img/new85.png" alt=""></a>
   </div>
 
@@ -93,22 +93,26 @@ include('connection.php');
                     //run the query
                     //recent
                     if($_GET['type'] == "recent"){
-                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
+                                    and (longitude between " . $_SESSION['user_long'] . "-0.059 and " . $_SESSION['user_long'] . "+0.059) and (latitude between " . $_SESSION['user_lat'] . "-0.045 and " . $_SESSION['user_lat'] . "+0.045 )
+                                    order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //Popular
                     else if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid')
+                                and (longitude between " . $_SESSION['user_long'] . "-0.059 and " . $_SESSION['user_long'] . "+0.059) and (latitude between " . $_SESSION['user_lat'] . "-0.045 and " . $_SESSION['user_lat'] . "+0.045 )
+                                order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //My votes
                     else if($_GET['type'] == "votes"){
-                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 10")
+                        $loop = mysql_query("SELECT * FROM Poll inner join User_Response on User_Response.PollID=Poll.PollID where Poll.PollID in (select PollID from User_Response where sessionid = '$sessionid') order by TimeSubmitted desc limit 20")
                         or die (mysql_error());
                     }
                     //My strolls
                     else if($_GET['type'] == "strolls"){
-                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Stroll where sessionid = '$sessionid') order by PollDate limit 10")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Stroll where sessionid = '$sessionid') order by PollDate desc limit 20")
                         or die (mysql_error());
                     }
                     //Start from beginning
@@ -116,7 +120,11 @@ include('connection.php');
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
                         or die (mysql_error());
                     }
-
+                    if (!mysql_num_rows($loop)) { ?>
+                        
+                        <h2>No Strolls found. :( <br> <a href="#modal">Submit your own!</a></h2>
+                        <?php
+                    }
                     while ($poll = mysql_fetch_array($loop))
                     {      
                     ?>
@@ -125,22 +133,21 @@ include('connection.php');
                       <div class="container">
                         <form id = "<?php echo $poll['PollID']; ?>" class="qchoices" name="myform" action="vote.php" method="post">
                          <?php 
-                    $query = 'SELECT * FROM Response where PollID = ' . $poll['PollID'];
+                    $query = 'SELECT * FROM Response where PollID = ' . $poll['PollID'] . ' order by Number';
                     $result = mysql_query($query)
                         or die (mysql_error());
-
                     while ($row = mysql_fetch_array($result))
                     {   
                     ?>
                    
-                          <input value="<?php echo $row['Number'] ?>" type="radio" name="response" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show"/>
+                          <input value="<?php echo $row['Number'] ?>" type="radio" name="response" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show" <?php if ($_GET['type'] == "strolls" || $_GET['type'] == "votes") echo 'disabled' ?>/>
                           <label for="radio<?php echo $row['Number'] ?>" class="css-label radGroup2"><?php echo $row['Response']; ?></label><br/>
-                          <div class="result hide"><?php echo $row['Count']; ?> votes</div>
+                          <div class="result <?php if ($_GET['type'] != "strolls" && $_GET['type'] != "votes") echo 'hide' ?>"><?php echo $row['Count']; ?> votes</div>
                         <?php } ?>
                         <div class="load">
                             <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
                             <input class="hide" value="<?php echo $poll['PollID']; ?>" name="PollID">
-                            <input value="Next Stroll" type="submit" class ="confirm-submit center">
+                            <input value="Next Stroll" type="submit" class ="<?php if ($_GET['type'] == "strolls" || $_GET['type'] == "votes") echo 'hide'; else echo 'confirm-submit center' ?> ">
                           </div>
 
                     </form>
@@ -174,13 +181,21 @@ include('connection.php');
 
 <p class="left">No account is needed to vote or create poll. No usernames. No nonsense. Just go to the app on your laptop, Android, or iOS device and find out what people near you think.</p>
 
+<p class="left"><?php 
+    $stats = mysql_query('select count(distinct Poll.pollID) as polls, (select sum(Response.count) from Response) as votes, count(distinct User_Response.SessionID) as users from Poll inner join Response on Response.PollID=Poll.PollID inner join User_Response on User_Response.PollID=Response.PollID');
+    $result = mysql_fetch_array($stats);
+    ?>Users: <?php echo $result['users'] ?><br>
+     Polls: <?php echo $result['polls'] ?><br>
+     Votes: <?php echo $result['votes'] ?> <br>
+    </p>
+
 <p class="left">Created by <a href="http://johnsylva.in">John Sylvain</a>, <a href="http://cosmicshades.com">David Teter</a>, and <a href="">Nick Fonseca</a>.</p>
 </div>
            
             <script src="js/modernizr.not.js"></script>
             <script src="../src/jquery.remodal.js"></script>
 
-            <script>
+           <?php if ($_GET['type'] != "strolls" && $_GET['type'] != "votes"){ ?>  <script>
         $(document).ready(function(){
 
           $("form").click(function(){
@@ -190,5 +205,6 @@ include('connection.php');
         });
 
         </script>
+        <?php } ?>
       </body>
       </html>
