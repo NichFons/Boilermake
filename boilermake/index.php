@@ -1,6 +1,6 @@
 <?php
 session_start();
-$session = session_id();
+$sessionid = session_id();
 include('connection.php');
 ?>
 <!doctype html>
@@ -92,7 +92,7 @@ include('connection.php');
 
                     //run the query
                     //recent
-                    if($_GET['type'] == "popular"){
+                    if($_GET['type'] == "recent"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
                         or die (mysql_error());
                     }
@@ -102,12 +102,12 @@ include('connection.php');
                         or die (mysql_error());
                     }
                     //My votes
-                    else if($_GET['type'] == "popular"){
+                    else if($_GET['type'] == "votes"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 10")
                         or die (mysql_error());
                     }
                     //My strolls
-                    else if($_GET['type'] == "popular"){
+                    else if($_GET['type'] == "strolls"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 10")
                         or die (mysql_error());
                     }
@@ -117,15 +117,15 @@ include('connection.php');
                         or die (mysql_error());
                     }
 
-                    while ($row = mysql_fetch_array($loop))
+                    while ($poll = mysql_fetch_array($loop))
                     {      
                     ?>
                      <section id="a">
-                      <h2 class="question"><?php echo $row['Question']; ?></h2>
+                      <h2 class="question"><?php echo $poll['Question']; ?></h2>
                       <div class="container">
-                        <form id = "<?php echo $row['PollID']; ?>" class="qchoices" name="myform" action="vote.php" method="post">
+                        <form id = "<?php echo $poll['PollID']; ?>" class="qchoices" name="myform" action="vote.php" method="post">
                          <?php 
-                    $query = 'SELECT * FROM Response where PollID = ' . $row['PollID'];
+                    $query = 'SELECT * FROM Response where PollID = ' . $poll['PollID'];
                     $result = mysql_query($query)
                         or die (mysql_error());
 
@@ -133,13 +133,13 @@ include('connection.php');
                     {   
                     ?>
                    
-                          <input value="<?php echo $row['Response'] ?>" type="radio" name="foo" id="radio1" class="css-checkbox" data-id="show"/>
-                          <label for="radio1" class="css-label radGroup2"><?php echo $row['Response'] ?></label><br/>
-                          <div class="result hide"><?php echo $row['Count'] ?> votes</div>
+                          <input value="<?php echo $row['Number'] ?>" type="radio" name="foo" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show"/>
+                          <label for="radio<?php echo $row['Number'] ?>" class="css-label radGroup2"><?php echo $row['Response']; ?></label><br/>
+                          <div class="result hide"><?php echo $row['Count']; ?> votes</div>
                         <?php } ?>
                         <div class="load">
                             <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
-                            <input class="hide" value="<?php echo $row['PollID'] ?>" name="PollID">
+                            <input class="hide" value="<?php echo $poll['PollID']; ?>" name="PollID">
                             <input type="submit" class ="confirm-submit center">
                           </div>
 
