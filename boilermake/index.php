@@ -108,7 +108,7 @@ include('connection.php');
                     }
                     //My strolls
                     else if($_GET['type'] == "strolls"){
-                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 10")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Stroll where sessionid = '$sessionid') order by PollDate limit 10")
                         or die (mysql_error());
                     }
                     //Start from beginning
@@ -133,14 +133,14 @@ include('connection.php');
                     {   
                     ?>
                    
-                          <input value="<?php echo $row['Number'] ?>" type="radio" name="foo" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show"/>
+                          <input value="<?php echo $row['Number'] ?>" type="radio" name="response" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show"/>
                           <label for="radio<?php echo $row['Number'] ?>" class="css-label radGroup2"><?php echo $row['Response']; ?></label><br/>
                           <div class="result hide"><?php echo $row['Count']; ?> votes</div>
                         <?php } ?>
                         <div class="load">
                             <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
                             <input class="hide" value="<?php echo $poll['PollID']; ?>" name="PollID">
-                            <input type="submit" class ="confirm-submit center">
+                            <input value="Next Stroll" type="submit" class ="confirm-submit center">
                           </div>
 
                     </form>
@@ -158,9 +158,9 @@ include('connection.php');
     <form method="post" action="question.php">
       <input type="text" name='question' required placeholder="What's your question?">
       <hr class="half-rule">
-      <input type="text" required placeholder="Enter a choice!">
-      <input type="text" required placeholder="And another!">
-      <input type="text" placeholder="One more (only if you are feeling adventurous)">
+      <input name="response1" type="text" required placeholder="Enter a choice!">
+      <input name="response2" type="text" required placeholder="And another!">
+      <input name="response3" type="text" placeholder="One more (only if you are feeling adventurous)">
       <a class="remodal-cancel" href="#">Cancel</a>
       <input class="confirm-submit" type="submit">
     </form>
