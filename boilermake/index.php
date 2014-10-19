@@ -15,22 +15,6 @@ include('connection.php');
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script href="bootstrap/js/bootstrap.min.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript">
-  function disable() 
-  {
-    length=document.myform.length;
-
-    for (i=0;i<length;i++) 
-    {
-      if (document.myform[i].type=="radio") 
-      {
-        for(i=0;i<length;i++)
-          document.myform[i].disabled="disabled";
-      }
-    }
-    
-  }
-  </script>
 
 
 <!--[if lte IE 8]>
@@ -118,12 +102,12 @@ include('connection.php');
                     }
                     //My votes
                     else if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 10")
                         or die (mysql_error());
                     }
                     //My strolls
                     else if($_GET['type'] == "popular"){
-                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 10")
                         or die (mysql_error());
                     }
                     //Start from beginning
@@ -148,11 +132,11 @@ include('connection.php');
                     {   
                     ?>
                    
-                          <input value="<?php echo $row['Response'] ?>" type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
+                          <input value="<?php echo $row['Response'] ?>" type="radio" name="foo" id="radio1" class="css-checkbox" data-id="show"/>
                           <label for="radio1" class="css-label radGroup2"><?php echo $row['Response'] ?></label><br/>
                           <div class="result hide"><?php echo $row['Count'] ?> votes</div>
                         <?php } ?>
-                               <div class="load">
+                        <div class="load">
                             <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
                             <input type="submit" class ="confirm-submit center">
                           </div>
@@ -176,8 +160,7 @@ include('connection.php');
       <input type="text" required placeholder="And another!">
       <input type="text" placeholder="One more (only if you are feeling adventurous)">
       <a class="remodal-cancel" href="#">Cancel</a>
-      <a class="remodal-confirm" type="submit">Submit!</a>
-      <input class="pure-button" type="submit">
+      <input class="confirm-submit" type="submit">
     </form>
     <br>
 </div>
@@ -193,42 +176,7 @@ include('connection.php');
         <script src="js/modernizr.not.js"></script>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="../src/jquery.remodal.js"></script>
-            <script>
-                $(document).on('open', '.remodal', function () {
-                    console.log('open');
-                });
 
-                $(document).on('opened', '.remodal', function () {
-                    console.log('opened');
-                });
-
-                $(document).on('close', '.remodal', function () {
-                    console.log('close');
-                });
-
-                $(document).on('closed', '.remodal', function () {
-                    console.log('closed');
-                });
-
-                $(document).on('confirm', '.remodal', function () {
-                    console.log('confirm');
-                });
-
-                $(document).on('cancel', '.remodal', function () {
-                    console.log('cancel');
-                });
-
-            //    You can open or close it like this:
-            //    $(function () {
-            //        var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
-            //        inst.open();
-            //        inst.close();
-            //    });
-
-                //  Or init in this way:
-                var inst = $('[data-remodal-id=modal2]').remodal();
-                //  inst.open();
-            </script>
             <script>
         $(document).ready(function(){
 
