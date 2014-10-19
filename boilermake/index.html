@@ -11,22 +11,7 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <script href="bootstrap/js/bootstrap.min.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript">
-  function disable() 
-  {
-    length=document.myform.length;
-
-    for (i=0;i<length;i++) 
-    {
-      if (document.myform[i].type=="radio") 
-      {
-        for(i=0;i<length;i++)
-          document.myform[i].disabled="disabled";
-      }
-    }
-    
-  }
-  </script>
+  
 
 
 <!--[if lte IE 8]>
@@ -105,9 +90,10 @@
                           <input type="radio" name="foo" onclick="disable()" id="radio3" class="css-checkbox" data-id="show"/>
                           <label for="radio3" class="css-label radGroup2">Lorem ipsum Duis qui dolore nulla adipisicing sint dolor eiusmod tempor quis ex cillum eiusmod Duis tempor nisi ut nulla Ut dolor.</label><br/>
                           <div class="result hide">230 votes</div>
-    <div class="load">
-                    <a href="" type = "submit" class = "pure-button remodal-confirm center">Next Question</a>
-                  </div>
+                          <div class="load">
+                            <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
+                            <input type="submit" class ="confirm-submit center">
+                          </div>
 
                         </form>
                       
@@ -147,9 +133,9 @@
         <script>
         $(document).ready(function(){
 
-          $("form").click(function(){
-            $("div").slideDown();
-          });     
+          $(":radio").click(function(){
+            $(".result").slideDown();
+          });
 
         });
 
