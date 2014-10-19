@@ -128,7 +128,7 @@ include('connection.php');
                    
                           <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
                           <label for="radio1" class="css-label radGroup2"><?php echo $row['Response'] ?></label><br/>
-                          <div class="result hide"><?php echo $row['Count'] ?></div>
+                          <div class="result hide"><?php echo $row['Count'] ?> votes</div>
                         <?php } ?>
                                <div class="load">
                                 <a type="submit" class = "pure-button remodal-confirm center">Next Question</a>
@@ -154,7 +154,7 @@ include('connection.php');
       <input type="text" placeholder="One more (only if you are feeling adventurous)">
       <a class="remodal-cancel" href="#">Cancel</a>
       <a class="remodal-confirm" type="submit">Submit!</a>
-      <input type="submit">Submit</input>
+      <input class="pure-button" type="submit">
     </form>
     <br>
 </div>
@@ -206,5 +206,15 @@ include('connection.php');
                 var inst = $('[data-remodal-id=modal2]').remodal();
                 //  inst.open();
             </script>
+            <script>
+        $(document).ready(function(){
+
+          $("form").click(function(){
+            $("div").slideDown();
+          });     
+
+        });
+
+        </script>
       </body>
       </html>
