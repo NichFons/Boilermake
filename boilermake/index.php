@@ -153,8 +153,9 @@ include('connection.php');
                           <div class="result hide"><?php echo $row['Count'] ?> votes</div>
                         <?php } ?>
                                <div class="load">
-                                <a type="submit" class="pure-button remodal-confirm center">Next Question</a>
-                            </div>
+                            <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
+                            <input type="submit" class ="confirm-submit center">
+                          </div>
 
                     </form>
                       
@@ -232,7 +233,7 @@ include('connection.php');
         $(document).ready(function(){
 
           $("form").click(function(){
-            $("div").slideDown();
+            $(".result").slideDown();
           });     
 
         });
