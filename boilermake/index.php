@@ -107,8 +107,30 @@ include('connection.php');
 
                     //run the query
                     //recent
-                    $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                    if($_GET['type'] == "popular"){
+                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
                         or die (mysql_error());
+                    }
+                    //Popular
+                    else if($_GET['type'] == "popular"){
+                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        or die (mysql_error());
+                    }
+                    //My votes
+                    else if($_GET['type'] == "popular"){
+                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        or die (mysql_error());
+                    }
+                    //My strolls
+                    else if($_GET['type'] == "popular"){
+                        $loop = mysql_query("SELECT * FROM Poll order by PollDate limit 1")
+                        or die (mysql_error());
+                    }
+                    //Start from beginning
+                    else {
+                        $loop = mysql_query("SELECT * FROM Poll limit 1")
+                        or die (mysql_error());
+                    }
 
                     while ($row = mysql_fetch_array($loop))
                     {      
@@ -116,7 +138,7 @@ include('connection.php');
                      <section id="a">
                       <h2 class="question"><?php echo $row['Question']; ?></h2>
                       <div class="container">
-                        <form id = "<?php echo $row['PollID']; ?>" class="qchoices" name="myform" action="response.php" method="post">
+                        <form id = "<?php echo $row['PollID']; ?>" class="qchoices" name="myform" action="vote.php" method="post">
                          <?php 
                     $query = 'SELECT * FROM Response where PollID = ' . $row['PollID'];
                     $result = mysql_query($query)
@@ -126,12 +148,12 @@ include('connection.php');
                     {   
                     ?>
                    
-                          <input type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
+                          <input value="<?php echo $row['Response'] ?>" type="radio" name="foo" onclick="disable()" id="radio1" class="css-checkbox" data-id="show"/>
                           <label for="radio1" class="css-label radGroup2"><?php echo $row['Response'] ?></label><br/>
                           <div class="result hide"><?php echo $row['Count'] ?> votes</div>
                         <?php } ?>
                                <div class="load">
-                                <a type="submit" class = "pure-button remodal-confirm center">Next Question</a>
+                                <a type="submit" class="pure-button remodal-confirm center">Next Question</a>
                             </div>
 
                     </form>
@@ -146,7 +168,7 @@ include('connection.php');
 
 <div class="remodal" data-remodal-id="modal">
     <h1>Create a new stroll</h1>
-    <form method="post" action="response.php">
+    <form method="post" action="question.php">
       <input type="text" name='question' required placeholder="What's your question?">
       <hr class="half-rule">
       <input type="text" required placeholder="Enter a choice!">
