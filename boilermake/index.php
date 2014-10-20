@@ -92,26 +92,26 @@ include('connection.php');
                     $range = 10.000; //100m grains, x10 for 1k, x100 for 10k
                     //run the query
                     //recent
-                    if($_GET['type'] == "local"){
+                    if(strcasecmp($_GET['type'], "local") == 0){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
                                     and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
                                     order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //Popular
-                    else if($_GET['type'] == "popular"){
+                    else if(strcasecmp($_GET['type'], "popular") == 0){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid')
                                 and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
                                 order by PollDate limit 1")
                         or die (mysql_error());
                     }
                     //My votes
-                    else if($_GET['type'] == "myvotes"){
+                    else if(strcasecmp($_GET['type'], "myvotes") == 0){
                         $loop = mysql_query("SELECT * FROM Poll inner join User_Response on User_Response.PollID=Poll.PollID where Poll.PollID in (select PollID from User_Response where sessionid = '$sessionid') order by TimeSubmitted desc limit 20")
                         or die (mysql_error());
                     }
                     //My strolls
-                    else if($_GET['type'] == "mystrolls"){
+                    else if(strcasecmp($_GET['type'], "mystrolls") == 0){
                         $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Stroll where sessionid = '$sessionid') order by PollDate desc limit 20")
                         or die (mysql_error());
                     }
@@ -145,7 +145,7 @@ include('connection.php');
                         </p>
                         <p><?php if($_GET['type'] == "mystrolls") {
                         
-                        echo "http://boilermake.cosmicshades.com/?stroll=" . $poll['PollID']; 
+                        echo "Share link: http://boilermake.cosmicshades.com/?stroll=" . $poll['PollID']; 
                          
                         }?></p>
                       <div class="container">
