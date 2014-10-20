@@ -68,7 +68,7 @@ include('connection.php');
 <div class="pure-g container">
   
   <div class="pure-u-3-4 left">
-    <li><h1>stroll</h1></li>
+    <li><a href="http://boilermake.cosmicshades.com/"><h1>stroll</h1></a></li>
     <li class="about">
       <a href="#about"><h3 class="about trans">about</h3></a>
     </li>
@@ -80,10 +80,10 @@ include('connection.php');
 </div>
 
 <div class="pure-g container center">
-  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="#">Popular</a></div>
-  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="#">Recent</a></div>
-  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button yellow" href="?type=votes">My Votes</a></div>
-  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button green" href="?type=strolls">My Strolls</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button blue" href="?type=popular">Popular</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button red" href="?type=local">Local</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button yellow" href="?type=myvotes">My Votes</a></div>
+  <div class="pure-u-1-2 pure-u-md-1-4 margin-navbar"><a class = "pure-button green" href="?type=mystrolls">My Strolls</a></div>
 </div>
 <hr class="half-rule container margin-hr">
 <div class="pure-g container">         
@@ -92,7 +92,7 @@ include('connection.php');
                     $range = 10.000; //100m grains, x10 for 1k, x100 for 10k
                     //run the query
                     //recent
-                    if($_GET['type'] == "recent"){
+                    if($_GET['type'] == "local"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
                                     and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
                                     order by PollDate limit 1")
@@ -106,18 +106,25 @@ include('connection.php');
                         or die (mysql_error());
                     }
                     //My votes
-                    else if($_GET['type'] == "votes"){
+                    else if($_GET['type'] == "myvotes"){
                         $loop = mysql_query("SELECT * FROM Poll inner join User_Response on User_Response.PollID=Poll.PollID where Poll.PollID in (select PollID from User_Response where sessionid = '$sessionid') order by TimeSubmitted desc limit 20")
                         or die (mysql_error());
                     }
                     //My strolls
-                    else if($_GET['type'] == "strolls"){
+                    else if($_GET['type'] == "mystrolls"){
                         $loop = mysql_query("SELECT * FROM Poll where PollID in (select PollID from User_Stroll where sessionid = '$sessionid') order by PollDate desc limit 20")
+                        or die (mysql_error());
+                    }
+                    else if(isset($_GET['stroll'])){
+                        $strollid = $_GET['stroll'];
+                        $loop = mysql_query("SELECT * FROM Poll where PollID = $strollid limit 1")
                         or die (mysql_error());
                     }
                     //Start from beginning
                     else {
-                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') order by PollDate limit 1")
+                        $loop = mysql_query("SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid')
+                                and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
+                                order by PollDate limit 1")
                             or die (mysql_error());
                     }
                     if (!mysql_num_rows($loop)) { ?>
@@ -130,9 +137,15 @@ include('connection.php');
                     ?>
                      <section id="a">
                       <h2 class="question"><?php echo $poll['Question']; ?></h2>
-                      <p><?php if ($_GET['type'] == "strolls" || $_GET['type'] == "votes") {
+                      <p><?php if($_GET['type'] == "mystrolls") {
                         
-                        echo "Text 'stroll " . $poll['PollID'] ."' to (812)558-3919"; 
+                        echo "Text 'stroll " . $poll['PollID'] . "' to (812)558-3919"; 
+                         
+                        }?>
+                        </p>
+                        <p><?php if($_GET['type'] == "mystrolls") {
+                        
+                        echo "http://boilermake.cosmicshades.com/?stroll=" . $poll['PollID']; 
                          
                         }?></p>
                       <div class="container">
@@ -145,23 +158,20 @@ include('connection.php');
                     {   
                     ?>
                    
-                          <input value="<?php echo $row['Number'] ?>" type="radio" name="response" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show" <?php if ($_GET['type'] == "strolls" || $_GET['type'] == "votes") echo 'disabled' ?>/>
+                          <input value="<?php echo $row['Number'] ?>" type="radio" name="response" id="radio<?php echo $row['Number'] ?>" class="css-checkbox" data-id="show" <?php if ($_GET['type'] == "mystrolls" || $_GET['type'] == "myvotes") echo 'disabled' ?>/>
                           <label for="radio<?php echo $row['Number'] ?>" class="css-label radGroup2"><?php echo $row['Response']; ?></label><br/>
-                          <div class="result <?php if ($_GET['type'] != "strolls" && $_GET['type'] != "votes") echo 'hide' ?>"><?php echo $row['Count']; ?> votes</div>
+                          <div class="result <?php if ($_GET['type'] != "mystrolls" && $_GET['type'] != "myvotes") echo 'hide' ?>"><?php echo $row['Count']; ?> votes</div>
                         <?php } ?>
                         <div class="load">
                             <!-- <a href="" type = "submit" class = "pure-button confirm-submit center">Next Question</a> -->
                             <input class="hide" value="<?php echo $poll['PollID']; ?>" name="PollID">
-                            <input value="Next Stroll" type="submit" class ="<?php if ($_GET['type'] == "strolls" || $_GET['type'] == "votes") echo 'hide'; else echo 'confirm-submit center' ?> ">
+                            <input value="Next Stroll" type="submit" class ="<?php if ($_GET['type'] == "mystrolls" || $_GET['type'] == "myvotes") echo 'hide'; else echo 'confirm-submit center' ?> ">
                           </div>
 
                     </form>
                     </div>
                   </section>
                   <?php } ?>
-                  <p class="hide"><?php echo "SELECT * FROM Poll where PollID not in (select PollID from User_Response where sessionid = '$sessionid') 
-                                    and (longitude between " . $_SESSION['user_long'] . "-0.001*$range and " . $_SESSION['user_long'] . "+0.001*$range) and (latitude between " . $_SESSION['user_lat'] . "-0.001*$range and " . $_SESSION['user_lat'] . "+0.001*$range )
-                                    order by PollDate limit 1" ?></p>
   </div>
 </div>
 
@@ -202,7 +212,7 @@ include('connection.php');
             <script src="js/modernizr.not.js"></script>
             <script src="../src/jquery.remodal.js"></script>
 
-           <?php if ($_GET['type'] != "strolls" && $_GET['type'] != "votes"){ ?>  <script>
+           <?php if ($_GET['type'] != "mystrolls" && $_GET['type'] != "myvotes"){ ?>  <script>
         $(document).ready(function(){
 
           $("form").click(function(){
